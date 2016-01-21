@@ -1,5 +1,5 @@
 # GEM
-Reactive Pure Data/Gem 3D objects
+Reactive Pure Data/Gem 3D objects and Visuals with Pure Data/Gem.
 
 An example of an Audiovisual piece was exhibited at AUDIÓPOLIS/AudioMad, Palacio de Cibeles, November/Dicember 2015:
 
