@@ -1,0 +1,201 @@
+#N canvas 609 945 523 89 10;
+#X text 626 139 particle acceleration;
+#X text 86 116 [part_follow] lets the particles follow each other.
+;
+#X text 51 65 Class: Particle System;
+#X text 38 41 inlet 1: gemlist (with part_head) \, draw [line|point|<nr>]
+;
+#X text 34 15 Synopsis: [part_follow];
+#X text 10 90 Description: Particle follow each other;
+#X obj 520 -44 gemhead;
+#X obj 520 -64 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#N canvas 167 153 450 300 gemwin 1;
+#X obj 132 136 gemwin;
+#X obj 67 89 outlet;
+#X obj 67 10 inlet;
+#X obj 67 41 route create;
+#X msg 67 70 set destroy;
+#X msg 142 68 set create;
+#X msg 302 114 destroy;
+#X msg 132 112 dimen 1720 880 \, create \, 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 0 7 0;
+#X connect 3 1 5 0;
+#X connect 3 1 6 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X restore 523 326 pd gemwin;
+#X msg 525 304 destroy;
+#X text 521 286 Create window:;
+#X floatatom 620 161 5 0 0 0 - - -;
+#X text 57 214 TODO: how does this work .. example !!!;
+#X obj 521 187 part_follow 0.001;
+#X obj 521 51 part_head;
+#X obj 521 255 part_draw;
+#X obj 521 75 part_source 500;
+#X obj 521 103 part_killold 0.1;
+#X floatatom 701 12 5 0 0 0 - - -;
+#X floatatom 785 14 5 0 0 0 - - -;
+#X obj 531 222 part_color;
+#X msg 680 187 1 1 1;
+#X msg 694 234 0 0 1;
+#X obj 703 -286 adc~;
+#X obj 703 -248 fiddle~;
+#X obj 703 -190 moses 60;
+#X obj 703 -154 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 748 -152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 703 -221 5 0 0 0 - - -;
+#X obj 699 -112 metro 160;
+#X obj 699 -76 random 500;
+#X obj 779 -116 metro 160;
+#X obj 779 -80 random 10;
+#X obj 700 -33 knob 32 32 0 500 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 781 -34 knob 32 32 -5 5 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 694 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 906 203 camera;
+#X obj 906 91 gemhead;
+#X obj 889 128 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X obj 912 109 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 1001 139 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X obj 1027 124 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X msg 1001 162 left \$1;
+#X msg 1027 140 right \$1;
+#X obj 802 166 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 828 144 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X msg 828 160 up \$1;
+#X msg 802 182 down \$1;
+#X msg 1043 90 reset;
+#X msg 912 126 forward \$1;
+#X msg 889 144 reverse \$1;
+#X msg 793 298 speed \$1;
+#X floatatom 793 279 5 0 0 0 - - -;
+#X floatatom 794 241 5 0 0 0 - - -;
+#X msg 1106 196 lookX \$1;
+#X msg 1106 233 lookY \$1;
+#X msg 1106 269 lookZ \$1;
+#X floatatom 1106 180 5 0 0 0 - - -;
+#X floatatom 1106 251 5 0 0 0 - - -;
+#X floatatom 1106 216 5 0 0 0 - - -;
+#X msg 794 259 distance \$1;
+#X floatatom 877 17 5 0 0 0 - - -;
+#X obj 879 -149 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 875 -107 metro 160;
+#X obj 876 -28 knob 32 32 0 50 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X floatatom 955 12 5 0 0 0 - - -;
+#X obj 957 -154 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 953 -112 metro 160;
+#X obj 954 -33 knob 32 32 0 100 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 953 -76 random 100;
+#X obj 875 -71 random 50;
+#X msg 834 -209 stop;
+#X obj 834 -239 metro 376000;
+#X obj 834 -261 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 826 117 ON;
+#X text 887 103 ON;
+#X text 998 114 ON;
+#X floatatom 621 13 5 0 0 0 - - -;
+#X obj 623 -153 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 619 -111 metro 160;
+#X obj 620 -32 knob 32 32 0 5 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 0 1;
+#X obj 619 -74 random 5;
+#X connect 6 0 14 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 8 0;
+#X connect 9 0 35 0;
+#X connect 9 0 73 0;
+#X connect 11 0 13 1;
+#X connect 13 0 20 0;
+#X connect 14 0 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 13 0;
+#X connect 20 0 15 0;
+#X connect 21 0 20 2;
+#X connect 22 0 20 1;
+#X connect 23 0 24 0;
+#X connect 24 0 28 0;
+#X connect 25 0 26 0;
+#X connect 25 0 62 0;
+#X connect 25 1 27 0;
+#X connect 25 1 66 0;
+#X connect 25 1 78 0;
+#X connect 26 0 29 0;
+#X connect 27 0 31 0;
+#X connect 28 0 25 0;
+#X connect 29 0 30 0;
+#X connect 30 0 33 0;
+#X connect 31 0 32 0;
+#X connect 32 0 34 0;
+#X connect 33 0 16 1;
+#X connect 33 0 18 0;
+#X connect 34 0 16 3;
+#X connect 34 0 19 0;
+#X connect 35 0 22 0;
+#X connect 37 0 36 0;
+#X connect 38 0 50 0;
+#X connect 39 0 49 0;
+#X connect 40 0 42 0;
+#X connect 41 0 43 0;
+#X connect 42 0 36 0;
+#X connect 43 0 36 0;
+#X connect 44 0 47 0;
+#X connect 45 0 46 0;
+#X connect 46 0 36 0;
+#X connect 47 0 36 0;
+#X connect 48 0 36 0;
+#X connect 49 0 36 0;
+#X connect 50 0 36 0;
+#X connect 51 0 36 0;
+#X connect 52 0 51 0;
+#X connect 53 0 60 0;
+#X connect 54 0 36 0;
+#X connect 55 0 36 0;
+#X connect 56 0 36 0;
+#X connect 57 0 54 0;
+#X connect 58 0 56 0;
+#X connect 59 0 55 0;
+#X connect 60 0 36 0;
+#X connect 61 0 53 0;
+#X connect 62 0 63 0;
+#X connect 63 0 70 0;
+#X connect 64 0 61 0;
+#X connect 65 0 52 0;
+#X connect 66 0 67 0;
+#X connect 67 0 69 0;
+#X connect 68 0 65 0;
+#X connect 69 0 68 0;
+#X connect 70 0 64 0;
+#X connect 71 0 29 0;
+#X connect 71 0 31 0;
+#X connect 71 0 63 0;
+#X connect 71 0 67 0;
+#X connect 71 0 79 0;
+#X connect 72 0 71 0;
+#X connect 73 0 72 0;
+#X connect 77 0 11 0;
+#X connect 78 0 79 0;
+#X connect 79 0 81 0;
+#X connect 80 0 77 0;
+#X connect 81 0 80 0;
