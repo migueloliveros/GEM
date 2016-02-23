@@ -1,0 +1,387 @@
+#N canvas 1135 23 1664 961 10;
+#X text 520 317 particle acceleration;
+#X text 736 417 [part_follow] lets the particles follow each other.
+;
+#X text 701 366 Class: Particle System;
+#X text 688 342 inlet 1: gemlist (with part_head) \, draw [line|point|<nr>]
+;
+#X text 660 391 Description: Particle follow each other;
+#X obj 415 -74 gemhead;
+#X obj 415 -109 tgl 30 0 empty empty empty 0 -6 0 8 -4034 -1 -1 1 1
+;
+#N canvas 167 153 370 170 gemwin 0;
+#X obj 132 136 gemwin;
+#X obj 67 89 outlet;
+#X obj 67 10 inlet;
+#X obj 67 41 route create;
+#X msg 67 70 set destroy;
+#X msg 142 68 set create;
+#X msg 302 114 destroy;
+#X msg 132 112 dimen 1720 880 \, create \, 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 0 7 0;
+#X connect 3 1 5 0;
+#X connect 3 1 6 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X restore 417 510 pd gemwin;
+#X msg 419 488 destroy;
+#X text 415 470 Create window:;
+#X floatatom 514 343 5 0 0 0 - - -;
+#X obj 415 371 part_follow 0.001;
+#X obj 415 235 part_head;
+#X obj 415 439 part_draw;
+#X obj 415 259 part_source 500;
+#X obj 415 287 part_killold 0.1;
+#X floatatom 728 75 5 0 0 0 - - -;
+#X floatatom 846 76 5 0 0 0 - - -;
+#X obj 425 406 part_color;
+#X msg 557 358 1 1 1;
+#X msg 571 405 0 0 1;
+#X obj 475 -457 adc~;
+#X obj 474 -358 fiddle~;
+#X obj 474 -309 moses 60;
+#X obj 728 -96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 859 -101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 474 -331 5 0 0 0 - - -;
+#X obj 728 -77 metro 160;
+#X obj 728 -56 random 500;
+#X obj 846 -80 metro 160;
+#X obj 846 -56 random 10;
+#X obj 728 -33 knob 100 100 0 500 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 7366 1;
+#X obj 846 -30 knob 100 100 -5 5 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 9900 1;
+#X obj 571 384 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1169 308 camera;
+#X obj 1169 196 gemhead;
+#X obj 1152 233 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 1175 214 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 1264 244 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 1290 229 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X msg 1264 267 left \$1;
+#X msg 1290 245 right \$1;
+#X obj 1065 271 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 1091 249 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X msg 1091 265 up \$1;
+#X msg 1065 287 down \$1;
+#X msg 1306 195 reset;
+#X msg 1175 231 forward \$1;
+#X msg 1152 249 reverse \$1;
+#X msg 1056 403 speed \$1;
+#X floatatom 1056 384 5 0 0 0 - - -;
+#X floatatom 1057 346 5 0 0 0 - - -;
+#X msg 1369 301 lookX \$1;
+#X msg 1369 338 lookY \$1;
+#X msg 1369 374 lookZ \$1;
+#X floatatom 1369 285 5 0 0 0 - - -;
+#X floatatom 1369 356 5 0 0 0 - - -;
+#X floatatom 1369 321 5 0 0 0 - - -;
+#X msg 1057 364 distance \$1;
+#X floatatom 1188 79 5 0 0 0 - - -;
+#X obj 1183 -103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1183 -83 metro 160;
+#X obj 1183 -29 knob 100 100 0 50 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 3366 1;
+#X floatatom 1295 82 5 0 0 0 - - -;
+#X obj 1295 -107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1295 -86 metro 160;
+#X obj 1295 -30 knob 100 100 0 100 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 2871 1;
+#X obj 1295 -64 random 100;
+#X obj 1183 -63 random 50;
+#X msg 896 -373 stop;
+#X obj 896 -416 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 1089 222 ON;
+#X text 1150 208 ON;
+#X text 1261 219 ON;
+#X floatatom 518 81 5 0 0 0 - - -;
+#X obj 519 -104 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 519 -83 metro 160;
+#X obj 518 -31 knob 100 100 0 5 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 1980 1;
+#X obj 519 -61 random 5;
+#X obj 222 285 cnv 15 170 250 empty empty empty 20 12 0 14 -228992
+-66577 0;
+#X obj 226 334 cnv 15 160 60 empty empty empty 20 12 0 14 -24198 -66577
+0;
+#X obj 224 -77 gemhead;
+#X obj 276 408 gemhead;
+#X obj 276 446 world_light;
+#X obj 227 372 ambientRGB 0 1 0;
+#X floatatom 253 338 3 0 1 0 - - -;
+#X floatatom 280 338 3 0 1 0 - - -;
+#X floatatom 307 338 3 0 1 0 - - -;
+#X floatatom 334 338 3 0 1 0 - - -;
+#X floatatom 324 408 5 0 0 0 - - -;
+#X obj 276 427 rotate 70 1 0 0;
+#X obj 227 409 sphere;
+#X obj 224 -117 tgl 30 0 empty empty empty 0 -6 0 8 -4034 -1 -1 1 1
+;
+#X obj 115 -38 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 2950 1;
+#X floatatom 143 32 5 0 0 0 - - -;
+#X obj 41 -33 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -45076
+-1 -1 4366 1;
+#X floatatom 67 37 5 0 0 0 - - -;
+#X obj -38 -36 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -258113
+-1 -45076 2891 1;
+#X floatatom -10 34 5 0 0 0 - - -;
+#X obj -114 -37 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 5251 1;
+#X floatatom -86 33 5 0 0 0 - - -;
+#X obj -187 -31 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -45076
+-1 -1 2655 1;
+#X floatatom -162 39 5 0 0 0 - - -;
+#X obj -265 -32 knob 60 60 0 100 0 0 empty empty empty 0 -8 0 8 -258113
+-1 -45076 3186 1;
+#X floatatom -237 37 5 0 0 0 - - -;
+#X obj -190 -85 random 100;
+#X obj -265 -83 random 100;
+#X obj -38 -86 random 100;
+#X obj -114 -87 random 100;
+#X obj -265 -110 metro 160;
+#X obj 39 -87 random 100;
+#X obj 116 -88 random 100;
+#X obj -265 -132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -190 -133 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -114 -133 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -38 -132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 39 -135 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 115 -134 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 684 316 Synopsis: [part_follow];
+#X text -254 -416 ReaCtive Geometric and Particule TranSformations
+\, Miguel Oliveros [Madrid 2016].;
+#X obj -190 -112 metro 1600;
+#X obj -114 -114 metro 1600;
+#X obj -38 -113 metro 1600;
+#X obj 39 -114 metro 1600;
+#X obj 115 -115 metro 1600;
+#X obj 543 -370 tabwrite~ array1;
+#X obj 543 -435 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array array1 100 float 3;
+#A 0 0.0328369 0.0324402 0.0322266 0.0323792 0.0322876 0.0321655 0.0318298
+0.0314941 0.0317078 0.0316467 0.0318604 0.0315857 0.0314026 0.0308838
+0.0310364 0.0308838 0.0307922 0.0305176 0.0300598 0.0293579 0.028656
+0.0281677 0.0279846 0.0281372 0.0276184 0.0272217 0.0269165 0.0267944
+0.0262146 0.0261841 0.0257568 0.0254822 0.0250244 0.0248108 0.0245972
+0.0240784 0.0236816 0.0231323 0.0229187 0.0223999 0.0219421 0.0212402
+0.0210876 0.0202942 0.0198364 0.0194702 0.0193481 0.0189209 0.01828
+0.0177917 0.0173035 0.0170288 0.0164185 0.0161743 0.015564 0.0153809
+0.0145874 0.0141296 0.0134583 0.0131531 0.0125122 0.0119629 0.0115662
+0.0110168 0.0104065 0.00949097 0.00906372 0.00845337 0.00817871 0.00744629
+0.00738525 0.00683594 0.00662231 0.00595093 0.00537109 0.00506592 0.00476074
+0.00427246 0.00326538 0.00265503 0.00195312 0.0015564 0.000640869 -0.000152588
+-0.00137329 -0.00167847 -0.00238037 -0.00289917 -0.00354004 -0.00411987
+-0.00466919 -0.00531006 -0.0057373 -0.00650024 -0.00708008 -0.00793457
+-0.00848389 -0.00961304 -0.00994873 -0.0107727;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 612 -539 graph;
+#X obj 543 -408 metro 160;
+#X obj 488 -392 *~ 1;
+#X text 582 -393 160 BPM=2.66666667 BPSEC;
+#X obj 1583 12 knob 60 60 0 10 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 4130 1;
+#X floatatom 1597 85 5 0 0 0 - - -;
+#X obj 1509 12 knob 60 60 0 10 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 2950 1;
+#X floatatom 1511 81 5 0 0 0 - - -;
+#X obj 1425 13 knob 60 60 0 10 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 5310 1;
+#X floatatom 1431 82 5 0 0 0 - - -;
+#X obj 1509 -53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1425 -54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1583 -53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 896 -394 metro 10000;
+#X obj 1426 -12 random 10;
+#X obj 1510 -12 random 10;
+#X obj 1583 -14 random 10;
+#X obj 1509 -34 metro 1600;
+#X obj 1583 -35 metro 1600;
+#X obj 1425 -35 metro 1600;
+#X connect 5 0 12 0;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 7 0;
+#X connect 8 0 33 0;
+#X connect 8 0 70 0;
+#X connect 10 0 11 1;
+#X connect 11 0 18 0;
+#X connect 12 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 11 0;
+#X connect 18 0 13 0;
+#X connect 19 0 18 2;
+#X connect 20 0 18 1;
+#X connect 21 0 22 0;
+#X connect 21 0 129 0;
+#X connect 21 0 125 0;
+#X connect 22 0 26 0;
+#X connect 23 0 24 0;
+#X connect 23 0 60 0;
+#X connect 23 0 112 0;
+#X connect 23 0 114 0;
+#X connect 23 0 116 0;
+#X connect 23 0 138 0;
+#X connect 23 0 139 0;
+#X connect 23 1 25 0;
+#X connect 23 1 64 0;
+#X connect 23 1 75 0;
+#X connect 23 1 113 0;
+#X connect 23 1 115 0;
+#X connect 23 1 117 0;
+#X connect 23 1 137 0;
+#X connect 24 0 27 0;
+#X connect 25 0 29 0;
+#X connect 26 0 23 0;
+#X connect 27 0 28 0;
+#X connect 28 0 31 0;
+#X connect 29 0 30 0;
+#X connect 30 0 32 0;
+#X connect 31 0 14 1;
+#X connect 31 0 16 0;
+#X connect 32 0 14 3;
+#X connect 32 0 17 0;
+#X connect 33 0 20 0;
+#X connect 35 0 34 0;
+#X connect 36 0 48 0;
+#X connect 37 0 47 0;
+#X connect 38 0 40 0;
+#X connect 39 0 41 0;
+#X connect 40 0 34 0;
+#X connect 41 0 34 0;
+#X connect 42 0 45 0;
+#X connect 43 0 44 0;
+#X connect 44 0 34 0;
+#X connect 45 0 34 0;
+#X connect 46 0 34 0;
+#X connect 47 0 34 0;
+#X connect 48 0 34 0;
+#X connect 49 0 34 0;
+#X connect 50 0 49 0;
+#X connect 51 0 58 0;
+#X connect 52 0 34 0;
+#X connect 53 0 34 0;
+#X connect 54 0 34 0;
+#X connect 55 0 52 0;
+#X connect 56 0 54 0;
+#X connect 57 0 53 0;
+#X connect 58 0 34 0;
+#X connect 60 0 61 0;
+#X connect 61 0 68 0;
+#X connect 62 0 59 0;
+#X connect 62 0 51 0;
+#X connect 64 0 65 0;
+#X connect 65 0 67 0;
+#X connect 66 0 63 0;
+#X connect 66 0 50 0;
+#X connect 67 0 66 0;
+#X connect 68 0 62 0;
+#X connect 69 0 27 0;
+#X connect 69 0 29 0;
+#X connect 69 0 61 0;
+#X connect 69 0 65 0;
+#X connect 69 0 76 0;
+#X connect 69 0 117 0;
+#X connect 69 0 116 0;
+#X connect 69 0 115 0;
+#X connect 69 0 114 0;
+#X connect 69 0 113 0;
+#X connect 69 0 112 0;
+#X connect 69 0 138 0;
+#X connect 69 0 137 0;
+#X connect 69 0 139 0;
+#X connect 70 0 140 0;
+#X connect 74 0 10 0;
+#X connect 75 0 76 0;
+#X connect 76 0 78 0;
+#X connect 77 0 74 0;
+#X connect 78 0 77 0;
+#X connect 81 0 84 0;
+#X connect 82 0 90 0;
+#X connect 84 0 91 0;
+#X connect 85 0 84 1;
+#X connect 86 0 84 2;
+#X connect 87 0 84 3;
+#X connect 88 0 84 4;
+#X connect 89 0 90 1;
+#X connect 90 0 83 0;
+#X connect 92 0 81 0;
+#X connect 93 0 94 0;
+#X connect 93 0 88 0;
+#X connect 95 0 96 0;
+#X connect 95 0 87 0;
+#X connect 97 0 98 0;
+#X connect 97 0 86 0;
+#X connect 99 0 100 0;
+#X connect 99 0 85 0;
+#X connect 101 0 102 0;
+#X connect 101 0 89 0;
+#X connect 103 0 104 0;
+#X connect 103 0 91 1;
+#X connect 105 0 101 0;
+#X connect 106 0 103 0;
+#X connect 107 0 97 0;
+#X connect 108 0 99 0;
+#X connect 109 0 106 0;
+#X connect 110 0 95 0;
+#X connect 111 0 93 0;
+#X connect 112 0 109 0;
+#X connect 113 0 120 0;
+#X connect 114 0 121 0;
+#X connect 115 0 122 0;
+#X connect 116 0 123 0;
+#X connect 117 0 124 0;
+#X connect 120 0 105 0;
+#X connect 121 0 108 0;
+#X connect 122 0 107 0;
+#X connect 123 0 110 0;
+#X connect 124 0 111 0;
+#X connect 126 0 128 0;
+#X connect 128 0 125 0;
+#X connect 131 0 132 0;
+#X connect 131 0 56 0;
+#X connect 133 0 134 0;
+#X connect 133 0 57 0;
+#X connect 135 0 136 0;
+#X connect 135 0 55 0;
+#X connect 137 0 144 0;
+#X connect 138 0 146 0;
+#X connect 139 0 145 0;
+#X connect 140 0 69 0;
+#X connect 140 0 43 0;
+#X connect 140 0 36 0;
+#X connect 140 0 38 0;
+#X connect 141 0 135 0;
+#X connect 142 0 133 0;
+#X connect 143 0 131 0;
+#X connect 144 0 142 0;
+#X connect 145 0 143 0;
+#X connect 146 0 141 0;
